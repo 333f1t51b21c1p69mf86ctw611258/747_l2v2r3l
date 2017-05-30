@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Post;
-use Illuminate\Support\Facedes\Auth;
+use Auth;
 
 class PostsController extends Controller
 {
-    
     /**
      * Display a paginated list of posts.
      *
@@ -24,12 +24,12 @@ class PostsController extends Controller
     /**
      * Favorite a particular post
      *
-     * @param  Post $post
+     * @param  int $post
      * @return Response
      */
-    public function favoritePost(Post $post)
+    public function favoritePost(int $post)
     {
-        Auth::user()->favorites()->attach($post->id);
+        Auth::user()->favorites()->attach($post);
 
         return back();
     }
@@ -37,12 +37,12 @@ class PostsController extends Controller
     /**
      * Unfavorite a particular post
      *
-     * @param  Post $post
+     * @param  int $post
      * @return Response
      */
-    public function unFavoritePost(Post $post)
+    public function unFavoritePost(int $post)
     {
-        Auth::user()->favorites()->detach($post->id);
+        Auth::user()->favorites()->detach($post);
 
         return back();
     }
